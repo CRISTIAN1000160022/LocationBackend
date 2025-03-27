@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "10b68865-b9f6-4b48-8609-d75594c5fe41",
+		"name": "Prueba Técnica BexTech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43304870",
+		"_collection_link": "https://restless-zodiac-887726.postman.co/workspace/Team-Workspace~f2fa0d43-f7d9-4aab-81db-9d43e772300a/collection/43304870-10b68865-b9f6-4b48-8609-d75594c5fe41?action=share&source=collection_link&creator=43304870"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Crear una variable jsonData que almacena la respuesta completa\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"// Mostrar la respuesta en la consola para depuración\r",
+									"console.log(jsonData);\r",
+									"\r",
+									"// Almacenar el token en una variable global correctamente\r",
+									"pm.globals.set(\"token_authenticate\", jsonData.Data);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Username\":\"admin\",\r\n    \"Password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/Login/AuthenticateToken",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"Login",
+								"AuthenticateToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "GetAllCountries",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44329/Country/GetAllCountries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"Country",
+								"GetAllCountries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCountry",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Ecuador\",\r\n    \"Code\": \"EC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/Country/AddCountry",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"Country",
+								"AddCountry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCountry",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CountryID\": \"7\",\r\n    \"Name\": \"Ecuadorr\",\r\n    \"Code\": \"ED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/Country/UpdateCountry",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"Country",
+								"UpdateCountry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCountry",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44329/Country/DeleteCountry/7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"Country",
+								"DeleteCountry",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "State",
+			"item": [
+				{
+					"name": "GetAllStates",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44329/State/GetAllStates",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"State",
+								"GetAllStates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddState",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Norte de Santander\",\r\n    \"CountryID\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/State/AddState",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"State",
+								"AddState"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateState",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"StateID\": \"2\",\r\n    \"Name\": \"Boyacaa\",\r\n    \"CountryID\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/State/UpdateState",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"State",
+								"UpdateState"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteState",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44329/State/DeleteState/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"State",
+								"DeleteState",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "GetAllCities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44329/City/GetAllCities",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"City",
+								"GetAllCities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Anapoima\",\r\n    \"StateID\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/City/AddCity",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"City",
+								"AddCity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CityID\": \"2\",\r\n    \"Name\": \"Melgar\",\r\n    \"StateID\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/City/UpdateCity",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"City",
+								"UpdateCity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_authenticate}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44329/City/DeleteCity/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"City",
+								"DeleteCity",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
